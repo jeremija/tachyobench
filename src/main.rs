@@ -71,6 +71,7 @@ const BENCHES: &[(&str, &str, &[(ExecutorId, fn(NonZeroU32) -> BenchIterator)])]
     add_test!(funnel, thingbuf),
     add_test!(funnel, postage_mpsc),
     add_test!(funnel, tokio_mpsc),
+    add_test!(funnel, mpmc_async),
     add_test!(pinball, async_channel),
     add_test!(pinball, flume),
     add_test!(pinball, futures_mpsc),
@@ -78,6 +79,7 @@ const BENCHES: &[(&str, &str, &[(ExecutorId, fn(NonZeroU32) -> BenchIterator)])]
     add_test!(pinball, thingbuf),
     add_test!(pinball, postage_mpsc),
     add_test!(pinball, tokio_mpsc),
+    add_test!(pinball, mpmc_async),
 ];
 
 pub struct BenchResult {
@@ -107,12 +109,12 @@ enum ExecutorId {
     SmolScale,
 }
 impl ExecutorId {
-    const TOKIO: &str = "tokio";
-    const ASYNCHRONIX: &str = "asynchronix";
+    const TOKIO: &'static str = "tokio";
+    const ASYNCHRONIX: &'static str = "asynchronix";
     #[cfg(feature = "async-std")]
-    const ASYNC_STD: &str = "async-std";
+    const ASYNC_STD: &'static str = "async-std";
     #[cfg(feature = "smolscale")]
-    const SMOLSCALE: &str = "smolscale";
+    const SMOLSCALE: &'static str = "smolscale";
 
     fn new(name: &str) -> Result<Self, ()> {
         match name {

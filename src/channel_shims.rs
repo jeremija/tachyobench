@@ -86,6 +86,36 @@ pub mod futures_mpsc {
     }
 }
 
+pub mod mpmc_async {
+    use ::mpmc_async;
+
+    use std::fmt::Debug;
+
+    #[derive(Clone)]
+    pub struct Sender<T> {
+        inner: mpmc_async::Sender<T>,
+    }
+    impl<T: Debug> Sender<T> {
+        pub async fn send(&mut self, message: T) {
+            self.inner.send(message).await.unwrap();
+        }
+    }
+
+    pub struct Receiver<T> {
+        inner: mpmc_async::Receiver<T>,
+    }
+    impl<T> Receiver<T> {
+        pub async fn recv(&mut self) -> Option<T> {
+            self.inner.recv().await.ok()
+        }
+    }
+
+    pub fn channel<T>(capacity: usize) -> (Sender<T>, Receiver<T>) {
+        let (s, r) = mpmc_async::channel(capacity);
+        (Sender { inner: s }, Receiver { inner: r })
+    }
+}
+
 pub mod postage_mpsc {
     use ::postage::mpsc as channel;
     use ::postage::sink::Sink;

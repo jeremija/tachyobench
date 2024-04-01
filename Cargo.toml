@@ -17,6 +17,7 @@ futures-channel = { version = "0.3", features = [ "sink" ] }
 futures-util = { version = "0.3", features = [ "sink" ] }
 lexopt = "0.2"
 num_cpus = "1.13"
+mpmc-async = "0.1.5"
 oorandom = "11.1"
 postage = "0.5"
 smolscale = { version = "0.3", optional = true }

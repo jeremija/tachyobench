@@ -7,6 +7,7 @@ macro_rules! add_bench {
         bench!(thingbuf);
         bench!(postage_mpsc);
         bench!(tokio_mpsc);
+        bench!(mpmc_async);
     };
 }
 

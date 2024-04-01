@@ -592,6 +592,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "mpmc-async"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d9dbafe9bb3e9c6afd7b0899434df130925b2efa02ae522118910bb979bae898"
+
+[[package]]
 name = "multishot"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -996,6 +1002,7 @@ dependencies = [
  "futures-channel",
  "futures-util",
  "lexopt",
+ "mpmc-async",
  "num_cpus",
  "oorandom",
  "postage",
